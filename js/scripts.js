@@ -61,13 +61,13 @@ for (i = 0; i < post.length; i++){
             <div class="post__footer">
                 <div class="likes js-likes">
                     <div class="likes__cta">
-                        <a class="like-button  js-like-button" href="#" data-postid="${post[i].id}">
+                        <a id='${post[i].id}' class="like-button  js-like-button" href="#" data-postid="${post[i].id}">
                             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                             <span class="like-button__label">Mi Piace</span>
                         </a>
                     </div>
                     <div class="likes__counter">
-                        Piace a <b id="like-counter-1" class="js-likes-counter">${post[i].likes}</b> persone
+                        Piace a <b id="like-counter-${post[i].id}" class="js-likes-counter">${post[i].likes}</b> persone
                     </div>
                 </div> 
             </div>            
@@ -76,21 +76,47 @@ for (i = 0; i < post.length; i++){
 }
 
 
-   
-let btnDiv = document.querySelector('.likes__cta');
-let btn = document.querySelector('.like-button');
-let likeCounter = document.querySelector('.js-likes-counter')
+let btn1 = document.getElementById('1');
+let btn2 = document.getElementById('2');
+let btn3 = document.getElementById('3');
 
-btnDiv.addEventListener('click',
+let likeCounter1 = document.getElementById('like-counter-1');
+let likeCounter2 = document.getElementById('like-counter-2');
+let likeCounter3 = document.getElementById('like-counter-3');
+
+
+btn1.addEventListener('click',
     function(){
         let likesClicked = post[0].likes;
         console.log('PRIMA', likesClicked)
         console.log('bottone cliccato');
         likesClicked++;
         console.log('DOPO', likesClicked);
-        btn.classList.add('like-button--liked');
-        likeCounter.innerHTML = likesClicked;
+        btn1.classList.add('like-button--liked');
+        likeCounter1.innerHTML = likesClicked;
         }
 )
 
+btn2.addEventListener('click',
+    function(){
+        let likesClicked = post[1].likes;
+        console.log('PRIMA', likesClicked)
+        console.log('bottone cliccato');
+        likesClicked++;
+        console.log('DOPO', likesClicked);
+        btn2.classList.add('like-button--liked');
+        likeCounter2.innerHTML = likesClicked;
+        }
+)
 
+btn3.addEventListener('click',
+    function(){
+        let likesClicked = post[2].likes;
+        console.log('PRIMA', likesClicked)
+        console.log('bottone cliccato');
+        likesClicked++;
+        console.log('DOPO', likesClicked);
+        btn3.classList.add('like-button--liked');
+        likeCounter3.innerHTML = likesClicked;
+        }
+)
