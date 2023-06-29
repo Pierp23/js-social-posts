@@ -76,47 +76,24 @@ for (i = 0; i < post.length; i++){
 }
 
 
-let btn1 = document.getElementById('1');
-let btn2 = document.getElementById('2');
-let btn3 = document.getElementById('3');
-
-let likeCounter1 = document.getElementById('like-counter-1');
-let likeCounter2 = document.getElementById('like-counter-2');
-let likeCounter3 = document.getElementById('like-counter-3');
+const allBtn = document.querySelectorAll('.js-like-button');
+const likedPosts = [];
 
 
-btn1.addEventListener('click',
-    function(){
-        let likesClicked = post[0].likes;
-        console.log('PRIMA', likesClicked)
-        console.log('bottone cliccato');
-        likesClicked++;
-        console.log('DOPO', likesClicked);
-        btn1.classList.add('like-button--liked');
-        likeCounter1.innerHTML = likesClicked;
+allBtn.forEach((singleBtn) => {
+    singleBtn.addEventListener('click',
+    function(event){
+        event.preventDefault();
+        if(!this.classList.contains('like-button--liked')){
+            this.classList.add('like-button--liked');
+            const postId = parseInt(this.getAttribute('data-postid'));
+            likedPosts.push(postId);
+
+            let likeCounter = document.getElementById(`like-counter-${postId}`);
+            let currentLikes = parseInt(likeCounter.innerText);
+            likeCounter.innerHTML = currentLikes + 1; 
+
         }
-)
-
-btn2.addEventListener('click',
-    function(){
-        let likesClicked = post[1].likes;
-        console.log('PRIMA', likesClicked)
-        console.log('bottone cliccato');
-        likesClicked++;
-        console.log('DOPO', likesClicked);
-        btn2.classList.add('like-button--liked');
-        likeCounter2.innerHTML = likesClicked;
-        }
-)
-
-btn3.addEventListener('click',
-    function(){
-        let likesClicked = post[2].likes;
-        console.log('PRIMA', likesClicked)
-        console.log('bottone cliccato');
-        likesClicked++;
-        console.log('DOPO', likesClicked);
-        btn3.classList.add('like-button--liked');
-        likeCounter3.innerHTML = likesClicked;
-        }
-)
+        console.log(likedPosts)
+    })
+})
